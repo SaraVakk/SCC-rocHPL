@@ -31,14 +31,15 @@
   ```nano hplrunscript```
 7. add the script to created file from https://github.com/cschpc/student-cluster-competition-2024/blob/main/benchmarks/rocHPL/run_rochpl_cce
 8. edit necessary bits: line 85 ```rochpl_bin=FIXME```, replace fixme with realpath of rochpl binary. (Navigate to build/bin/rochpl.version_number and print the realpath)
-9. Try to run using:  
+9. ```cd rocHPL```
+10. Try to run using:  
     ```MPICH_GPU_SUPPORT_ENABLED=1 srun --exclusive --nodes=1 --ntasks-per-node=2 --account=sara --time=00:15:00 --mem=0 ./hplrunscript -P 1 -Q 2 -N 128000 --NB 512```
 
-10. If permission denied check rights:  
+11. If permission denied check rights:  
   ```ls -l /home/sara/rocHPL/hplrunscript``` (change path if working in different environment)
-11. Change permissions:  
+12. Change permissions:  
  ```chmod +x /home/sara/rocHPL/hplrunscript``` (again, change path if necessary)
-12. And run the script from command line  
+13. And run the script from command line  
     For 1 node:  
     ```MPICH_GPU_SUPPORT_ENABLED=1 srun --exclusive --nodes=1 --ntasks-per-node=2 --account=sara --time=00:15:00 --mem=0 ./hplrunscript -P 1 -Q 2 -N 128000 --NB 512```  
     For 3 nodes:  
