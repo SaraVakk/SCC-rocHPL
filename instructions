@@ -2,3 +2,23 @@ Instructions for installing and running rocHPL!
 1. Go to working folder (you should find rocHPL from there already installed, if not follow steps 2-x)
 2. install: git clone https://github.com/ROCm/rocHPL.git
 3. create following bash script: 
+
+#!/bin/bash
+
+# Build inside subshell:
+(
+        module load cce
+        module load PrgEnv-cray
+        module load craype-x86-rome
+        module cray-mpich
+        module load craype-accel-amd-gfx90a
+
+        mpi_root=$CRAY_MPICH_DIR
+
+        # Use cray wrapper:
+        export CXX=CC
+        export HIPCXX=CC
+
+       ./install.sh --with-mpi=$mpi_root 
+)
+4. run build script: bash rochpl_build
