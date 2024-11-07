@@ -50,4 +50,5 @@
     ```MPICH_GPU_SUPPORT_ENABLED=1 srun --exclusive --nodes=3 --ntasks-per-node=2 --account=sara --time=00:15:00 --mem=0 ./run_rochpl -P 1 -Q 6 -p 1 -q 2 -N 222208 --NB 512 -f 0.3```   
 
     NOTE: --cpu-bind=none not supported in cluster. Assining cpu's and gpu's did not work due to gres settings.
-   
+13. save the output file HPL.out using scp
+    ```scp 16.1.32.173:/home/sara/rocHPL/build/HPL.out .```
