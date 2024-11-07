@@ -29,7 +29,7 @@
    ```bash rochpl_bashscript```
 6. ```cd rocHPL```
 7. ```cd build```
-8. ```export OMP_WAIT_POLICY=passive```
+8. ```export OMP_WAIT_POLICY=active```
 9. Try to run using:  
     ```MPICH_GPU_SUPPORT_ENABLED=1 srun --exclusive --nodes=1 --ntasks-per-node=2 --account=sara --time=00:15:00 --mem=0 ./run_rochpl -P 1 -Q 2 -N 128000 --NB 512```
 
