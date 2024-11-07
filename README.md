@@ -29,9 +29,9 @@
    ```bash rochpl_bashscript```
 6. ```cd rocHPL```
 7. ```cd build```
-8. ```export OMP_WAIT_POLICY=active```
+8. ```export OMP_WAIT_POLICY=active``` , if using -p 1 -q 2, =passive!!!!
 9. Try to run using:  
-    ```MPICH_GPU_SUPPORT_ENABLED=1 srun --exclusive --nodes=1 --ntasks-per-node=2 --account=sara --time=00:15:00 --mem=0 ./run_rochpl -P 1 -Q 2 -N 128000 --NB 512```
+    ```MPICH_GPU_SUPPORT_ENABLED=1 srun --exclusive --nodes=1 --ntasks-per-node=2 --account=sara --time=00:15:00 --mem=0 ./run_rochpl -P 2 -Q 1 -p 2 -q 1 -N 128000 --NB 512 -f 0.3```   
 
 10. If permission denied check rights:  
   ```ls -l /home/sara/rocHPL/hplrunscript``` (change path if working in different environment)
@@ -39,12 +39,13 @@
  ```chmod +x /home/sara/rocHPL/hplrunscript``` (again, change path if necessary)
 12. And run the script from command line  
     For 1 node:  
-    ```MPICH_GPU_SUPPORT_ENABLED=1 srun --exclusive --nodes=1 --ntasks-per-node=2 --account=sara --time=00:15:00 --mem=0 ./run_rochpl -P 1 -Q 2 -N 128000 --NB 512 -f 0.3```  
+    ```MPICH_GPU_SUPPORT_ENABLED=1 srun --exclusive --nodes=1 --ntasks-per-node=2 --account=sara --time=00:15:00 --mem=0 ./run_rochpl -P 2 -Q 1 -p 2 -q 1 -N 128000 --NB 512 -f 0.3``` 
     For 3 nodes:   
     first one theoretically the best option (https://arxiv.org/pdf/2304.10397)   
-    ```MPICH_GPU_SUPPORT_ENABLED=1 srun --exclusive --nodes=3 --ntasks-per-node=2 --account=sara --time=00:15:00 --mem=0 ./run_rochpl -P 3 -Q 2 -p 1 -q 2 -N 222208 --NB 512 -f 0.3```   
-    or   
-    ```MPICH_GPU_SUPPORT_ENABLED=1 srun --exclusive --nodes=3 --ntasks-per-node=2 --account=sara --time=00:15:00 --mem=0 ./run_rochpl -P 2 -Q 3 -p 2 -q 1 -N 222208 --NB 512 -f 0.3```   
+    ```MPICH_GPU_SUPPORT_ENABLED=1 srun --exclusive --nodes=3 --ntasks-per-node=2 --account=sara --time=00:15:00 --mem=0 ./run_rochpl -P 3 -Q 2 -p 2 -q 1 -N 222208 --NB 512 -f 0.3```   
+    or
+    ```export OMP_WAIT_POLICY=passive```    
+    ```MPICH_GPU_SUPPORT_ENABLED=1 srun --exclusive --nodes=3 --ntasks-per-node=2 --account=sara --time=00:15:00 --mem=0 ./run_rochpl -P 2 -Q 3 -p 1 -q 2 -N 222208 --NB 512 -f 0.3```   
     maybe even(unlikely)   
     ```MPICH_GPU_SUPPORT_ENABLED=1 srun --exclusive --nodes=3 --ntasks-per-node=2 --account=sara --time=00:15:00 --mem=0 ./run_rochpl -P 1 -Q 6 -p 1 -q 2 -N 222208 --NB 512 -f 0.3```   
 
